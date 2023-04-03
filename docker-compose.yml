@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  chaser:
+    build:
+      context: .
+      dockerfile: "Docker/Chaser/Dockerfile"
+    restart: always
+  writer1:
+    build:
+      context: .
+      dockerfile: "Docker/Writer/Dockerfile"
+    restart: always
+  writer2:
+    build:
+      context: .
+      dockerfile: "Docker/Writer/Dockerfile"
+    restart: always
+  writer3:
+    build:
+      context: .
+      dockerfile: "Docker/Writer/Dockerfile"
+    restart: always
+  writer4:
+    build:
+      context: .
+      dockerfile: "Docker/Writer/Dockerfile"
+    restart: always
+  postgres:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "password"
+      PGDATA: "/data"
+    ports:
+    - 5432:5432
+    tmpfs:
+    - /data    
+networks:
+  default:
+    driver: bridge
